@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #808080; /* Grey background */
+            font-family: Arial, sans-serif;
+            color: #000000; /* Black text color */
+        }
+        
+        .signup-container {
+            background-color: #575353; /* White container background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: green;
+        }
+        
+        .form-input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Signup</h1>
+        
+        <form id="signupForm">
+            <input type="text" id="username" class="form-input" name="username" placeholder="Username" required>
+            <span id="usernameError" class="error"></span><br>
+            
+            <input type="email" id="email" class="form-input" name="email" placeholder="Email" required>
+            <span id="emailError" class="error"></span><br>
+            
+            <input type="tel" id="phoneNumber" class="form-input" name="phoneNumber" placeholder="Phone Number" required>
+            <span id="phoneNumberError" class="error"></span><br>
+            
+            <button type="submit" id="submitButton" class="form-button" disabled>Sign Up</button>
+        </form>
+        
+        <div id="statusMessage" class="success"></div>
+    </div>
+    
+    <script>
+        const form = document.getElementById("signupForm");
+        const usernameInput = document.getElementById("username");
+        const emailInput = document.getElementById("email");
+        const phoneNumberInput = document.getElementById("phoneNumber");
+        const submitButton = document.getElementById("submitButton");
+        
+        usernameInput.addEventListener("input", validateUsername);
+        emailInput.addEventListener("input", validateEmail);
+        phoneNumberInput.addEventListener("input", validatePhoneNumber);
+        form.addEventListener("submit", submitForm);
+        
+        function validateUsername() {
+            const username = usernameInput.value;
+            const usernameError = document.getElementById("usernameError");
+            
+            if (username.length < 4) {
+                usernameError.textContent = "Username must be at least 4 characters.";
+            } else {
+                usernameError.textContent = "";
+            }
+            
+            validateForm();
+        }
+        
+        function validateEmail() {
+            const email = emailInput.value;
+            const emailError = document.getElementById("emailError");
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailPattern.test(email)) {
+                emailError.textContent = "Invalid email address.";
+            } else {
+                emailError.textContent = "";
+            }
+            
+            validateForm();
+        }
+        
+        function validatePhoneNumber() {
+            const phoneNumber = phoneNumberInput.value;
+            const phoneNumberError = document.getElementById("phoneNumberError");
+            
+            if (!(/^\d{10}$/.test(phoneNumber))) {
+                phoneNumberError.textContent = "Phone number must be a valid 10-digit number.";
+            } else {
+                phoneNumberError.textContent = "";
+            }
+            
+            validateForm();
+        }
+        
+        function validateForm() {
+            const username = usernameInput.value;
+            const email = emailInput.value;
+            const phoneNumber = phoneNumberInput.value;
+            
+            const usernameValid = username.length >= 4;
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            const phoneNumberValid = /^\d{10}$/.test(phoneNumber);
+            
+            if (usernameValid && emailValid && phoneNumberValid) {
+                submitButton.removeAttribute("disabled");
+            } else {
+                submitButton.setAttribute("disabled", "disabled");
+            }
+        }
+        
+        function submitForm(event) {
+            event.preventDefault();
+            setTimeout(() => {
+                document.getElementById("statusMessage").textContent = "Signup successful!";
+                setTimeout(() => {
+                    window.location.href = "welcome.html";
+                }, 1500);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

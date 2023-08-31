@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>Image Gallery</title>
+    <style>
+        #signupButton {
+            background-color: #000000; 
+            color: white; 
+            border: 2px solid #604c46; 
+            padding: 20px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            float: right;
+            margin-right: 20px;
+        }
+        #para1 {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: 60px;
+        }
+        img {
+            width: 200px;
+            height: 150px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="signupButton" onclick="redirectToSignup()">Signup</button>
+    <p id="para1">KDraft</p>
+    <div class="container">
+        <div class="container-left">
+            <p id="para1">welcome fans</p>
+            <h1 class="title">
+                Get noticed for <span class="title-s">who</span> you are,
+                <span class="title-s">not what</span> you look like.
+            </h1>
+            <p class="text">
+                You’re more than just a photo. You have stories to tell, and
+                passions to share, and things to talk about that are more
+                interesting than the weather. Because you deserve what dating
+                deserves: better.
+            </p>
+        </div>
+        <div class="container-right">
+            <img
+                class="couples-img couples-img-desktop"
+                src="k-drama pic.jpg"
+                alt=""
+            />
+        </div>
+        
+    </div>
+    <script src="index.js"></script>
+    <script>
+        function redirectToSignup() {
+            window.location.href = "signup.html";
+        }
+    </script>
+</body>
+</html>
